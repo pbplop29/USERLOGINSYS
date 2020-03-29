@@ -1,0 +1,49 @@
+{% extends "layout.html" %} {% block content %}
+{%from "_formhelpers.html" import render_field%}
+{%from "_formhelpers.html" import render_radio_field%}
+
+<h1>Sign Up page using froms</h1>
+
+<form action="/signup" method="POST">
+  {{form.csrf_token}}
+  {{ form.hidden_tag() }}
+
+
+
+  {{render_field(form.username, PLACEHOLDER=form.username.label.text)}}
+
+
+  {{render_field(form.email, PLACEHOLDER=form.email.label.text)}}
+
+
+
+  {{render_field(form.birthdate) }}
+
+
+  {{render_radio_field(form.radios) }}
+
+  {{render_field(form.selects) }}
+
+
+
+  {{render_field(form.password, PLACEHOLDER=form.password.label.text)}}
+
+
+
+  {{render_field(form.confirm_password, PLACEHOLDER=form.password.label.text)}}
+
+
+  {{(render_field(form.recaptcha))}}
+
+
+  {{form.submit (class="text-success")}}
+
+
+<!--rendered different fiels using render_field() and render_radio_field() macros ,, and rendered others just as that because they didnt need any specifications-->
+
+</form>
+
+
+Click <a href="{{ url_for('home') }}" class=" text-primary">here</a> to go to home
+<!--gave an anchor tag  that leads to home-->
+{% endblock content %}

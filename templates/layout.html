@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+
+
+
+
+
+  <!--meta begins-->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+
+
+
+
+
+
+
+  <!--bootstrap begins -->
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+  <!--
+    So there i gave a link to the stylesheet css file that i have within the static folder named as main.css
+  -->
+
+
+  {%if title_given%}
+  <title>{{title_given}}-Project</title>
+  {%else%}
+  <title>
+    Title Missing
+  </title>
+  {%endif%}
+  <!--
+    Here i wrote a syntax with if loop using the jinja2 things inside the curly braces
+  =====firstly i checked if there was something called title_given in the function that is under the rooute decorator in main,py file
+  =====if title_given was present, the titel was set as whatever the title_given value was assigned to in the main.py file
+  =====else it would just say title missing
+  =====and i ended the if loop again within the jinja thing
+  =====notice that you need {{}} for recalling a value from the python file and {% %} for declaring a function in jinja2
+  -->
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <button><a href="/">Go to home</a></button>
+  <button><a href="/about">Go to about</a></button>
+  <button><a href="/signin">Go to Sign in</a></button>
+  <button><a href="/signup">Go to Sign up</a></button>
+
+  <!--
+    Just added some anchor points
+    =====could have used url_for as well but href was just pretty easy for now
+  -->
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  {% for category, message in messages %}
+  <div class="alert alert-{{ category }}">
+    {{ message }}
+  </div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+
+  <!--
+    So this funciton right here is necessary for the flash message that we set up after if validate_on_submit():
+    here if a message and the category are given as 
+                  ======flash('sign up successful', 'success')
+    what it does is display the message up front and the color of flash is success, i.e. green.
+  -->
+
+  {% block content %} {% endblock content %}
+  <!--
+    The usual block content extendor
+  -->
+
+
+
+
+
+
+
+
+
+  <!--bootstrap begins -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+{% extends "layout.html" %} {% block content %}
+{%from "_formhelpers.html" import render_field%}
+<!-- basic extending and importing 
+-->
+<h1>Sign In page using froms</h1>
+
+
+<form action="/signin" method="POST">
+  <!--required to actually post and get data , these are the methods-->
+
+
+
+  {{form.csrf_token}}
+  <!--secret key organizer, these hep to remove the bots that try to steal cookies, or sth like that-->
+  {{ form.hidden_tag() }}
+  <!--I forgot but just put it incase-->
+
+
+
+  {{render_field(form.email)}}
+
+
+
+
+  {{render_field(form.password)}}
+
+
+
+
+
+  {{form.submit(class="text-success")}}
+
+
+  {{form.remember}}
+  {{form.remember.label(class="text-success")}}
+  <!--rendered different fiels using render_field() macro ,, and rendered others just as that because they didnt need any specifications-->
+
+
+
+
+</form>
+Click <a href="{{ url_for('home') }}" class=" text-primary">here</a> to go to home.
+<!--gave an anchor tag  that leads to home-->
+{% endblock content%}
