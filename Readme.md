@@ -47,9 +47,9 @@
 
 
 
-TO LEARN NEXT:
+** TO LEARN NEXT: **
 
- a) --DATABASE--
+a) ~~DATABASE~~
 
 b) PACKAGEs 
 
