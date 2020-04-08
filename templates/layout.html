@@ -27,7 +27,7 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}"> 
   <!--
     So there i gave a link to the stylesheet css file that i have within the static folder named as main.css
   -->
@@ -46,7 +46,7 @@
   =====if title_given was present, the titel was set as whatever the title_given value was assigned to in the main.py file
   =====else it would just say title missing
   =====and i ended the if loop again within the jinja thing
-  =====notice that you need {{}} for recalling a value from the python file and {% %} for declaring a function in jinja2
+  =====notice that you need double braces for recalling a value from the python file and braces and percentages for declaring a function in jinja2
   -->
 
 
@@ -61,12 +61,13 @@
 <body>
 
 
-
-  <button><a href="/">Go to home</a></button>
-  <button><a href="/about">Go to about</a></button>
-  <button><a href="/signin">Go to Sign in</a></button>
-  <button><a href="/signup">Go to Sign up</a></button>
-
+<div class = "anch">
+  <a href='/home'><img src="/static/logo.png" class="img"></a>
+  <a href="/" ><button class = 'anch-btn'>Go to home</button></a>
+  <a href="/about" ><button class = 'anch-btn'>Go to about</button></a>
+  <a href="/signin" ><button class = 'anch-btn'>Go to Sign in</button></a>
+  <a href="/signup" ><button class = 'anch-btn'>Go to Sign up</button></a>
+</div>
   <!--
     Just added some anchor points
     =====could have used url_for as well but href was just pretty easy for now
@@ -84,18 +85,19 @@
 
 
   <!--
-    So this funciton right here is necessary for the flash message that we set up after if validate_on_submit():
+    So this funciton right here is necessary for the flash message that we set up after if validate_on_submit:
     here if a message and the category are given as 
-                  ======flash('sign up successful', 'success')
+                  ======flash'sign up successful', 'success'
     what it does is display the message up front and the color of flash is success, i.e. green.
   -->
+
+
+
 
   {% block content %} {% endblock content %}
   <!--
     The usual block content extendor
   -->
-
-
 
 
 

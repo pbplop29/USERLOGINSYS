@@ -5,7 +5,7 @@
 <h1>Sign In page using froms</h1>
 
 
-<form action="/signin" method="POST">
+<form action="/signin" method="POST" class='form1'>
   <!--required to actually post and get data , these are the methods-->
 
 
@@ -17,12 +17,12 @@
 
 
 
-  {{render_field(form.email)}}
+  {{render_field(form.email, PLACEHOLDER=form.email.label.text)}}
 
 
 
 
-  {{render_field(form.password)}}
+  {{render_field(form.password, PLACEHOLDER=form.password.label.text)}}
 
 
 
@@ -33,12 +33,14 @@
 
   {{form.remember}}
   {{form.remember.label(class="text-success")}}
-  <!--rendered different fiels using render_field() macro ,, and rendered others just as that because they didnt need any specifications-->
+  <!--rendered different fiels using render_field macro ,, and rendered others just as that because they didnt need any specifications-->
 
 
 
 
 </form>
-Click <a href="{{ url_for('home') }}" class=" text-primary">here</a> to go to home.
+<div class="link">
+Click <a  href="{{ url_for('home') }}" ><button >here</button></a> to go to home.
+</div>
 <!--gave an anchor tag  that leads to home-->
 {% endblock content%}

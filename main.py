@@ -50,6 +50,18 @@ class User(db.Model):
 #thre __repr__(self):
 #this thing is required to give out the values mentioned in it, whatever is called is then used in the datbase
 
+#in cmdline
+#python in project dir
+#from main import db
+#db.create_all()
+#
+
+
+
+
+
+
+
 
 
 @app.route("/")

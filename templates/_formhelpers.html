@@ -1,8 +1,9 @@
 {% macro render_field(field) %}
-<div class="form-group">
-    <label for="{{ field.name }}" class="col-lg-2 control-label">{{ field.label.text }}</label>
-    <div class="col-lg-3">
-        {{ field(class_='form-control', **kwargs)|safe }}
+<div >
+    <label for="{{ field.name }}" class="control-label">{{ field.label.text }}</label>
+    <div class>
+        {{ field(class_='form-field', **kwargs)|safe }}
+    
         <ul style="background-color:black">
             {% for error in field.errors %}
             <li style="color:red;">{{ error }}</li>
@@ -15,14 +16,14 @@
 <!--
     Okay so i created this form helper that helps to show the errors of the formfields, except the radio field because that works differently.
     basically its a macro that we used ,, we use it like
-                                                ======={{render_field(form.username, PLACEHOLDER=form.username.label.text)}}
+                                                =======render_fieldform.username, PLACEHOLDER=form.username.label.text
     so what i need to understand here is:
     -----we created a div with class form group, which we atually dont need, its a css thing, ill look into it later
     -----to render the laber, we did a for becasue the label had to be for the field.name ,,, gave it a class which was again a css thing, and 
         displayed the field.label in there, easy 
     -----now to displat the actual field, we declared a div with a class obviosuly which is again css thing and within that div we displayed
-        {{field}}
-        we added (class_ =) {class_ is the way to add class isnide a jinja thing} and , **Kwargs which are any additional keyword arguements provided, we just do the safe thing to be safe :p 
+        field
+        we added class_ = class_ is the way to add class isnide a jinja thing and , **Kwargs which are any additional keyword arguements provided, we just do the safe thing to be safe :p 
 
 
     ----- now look at the render_field thing we gave above,
@@ -33,11 +34,11 @@
 
 
 {% macro render_radio_field(field) %}
-<div class="form-group">
-    <label class="col-lg-2 control-label">{{ field.label.text }}</label>
-    <div class="col-lg-10">
+<div >
+    <label class="control-label">{{ field.label.text }}</label>
+    <div >
         {% for subfield in field %}
-        <div class="radio">
+        <div >
             <label>
                 {{ subfield }}
                 {{ subfield.label.text }}
@@ -57,3 +58,18 @@
         would  be displayed first and then the field to click on, seeeeee :p
     ---- then the loop was eneded no errors were shown in this, idk why i did that but i will look into it later.
 -->
+
+{% macro render_recap(field) %}
+<div >
+    <label for="{{ field.name }}" class="control-label">{{ field.label.text }}</label>
+    <div>
+        {{ field(class_='form-field', **kwargs)|safe }}
+    
+        <ul style="background-color:black">
+            {% for error in field.errors %}
+            <li style="color:red;">{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endmacro %}
