@@ -1,5 +1,5 @@
-#DONE UPTO DATABASE
-##refer to to do next below
+# DONE UPTO DATABASE
+## refer to to do next below
 
 -->main.py is the main python file 
 
@@ -49,7 +49,7 @@
 
 TO LEARN NEXT:
 
- a) DATABASE 
+ a) --DATABASE--
 
 b) PACKAGEs 
 
