@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm, RecaptchaField
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, Form, RadioField, SelectField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, Form, RadioField, SelectField, ValidationError
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 from wtforms.fields.html5 import DateField
+
 
 #so obviously imported Flaskform
 #imported RecaptchaField from flask_wtf because it is somewhat different from ususal wtforms fields
@@ -40,9 +41,7 @@ class signupform(FlaskForm):
     #RecaptchaField() --> just enables the recaptcha thing at this place, recaptcha is a little different as it requires keys to be put in the main file, the keys we recieve from the recaptcha providing host.
                 # I used GOOGLE recaptcha services
 
-    submit = SubmitField('Sign Up')
     
-    #Genertaes a submit button which acts as post
 
     radios = RadioField('Gender', default='3', choices= [('1', 'Male'), ('2', 'Female'), ('3', 'Confidential')])
 
@@ -55,6 +54,13 @@ class signupform(FlaskForm):
 
     #basically a drop down seclection
     #acts as a pop up radio field thing but works with the form helper of regular things
+    submit = SubmitField('Sign Up')
+    
+    #Genertaes a submit button which acts as post
+
+
+
+
 
 
 class signinform(FlaskForm):

@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, flash, redirect
 from forms import signupform, signinform
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from werkzeug.security import generate_password_hash, check_password_hash
 
 #imported all things
 
@@ -21,6 +22,7 @@ db = SQLAlchemy(app)
 
 
 
+
 class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
@@ -29,9 +31,13 @@ class User(db.Model):
 
     email = db.Column(db.String(20), unique=True, nullable=False)
 
-    image_file = db.Column(db.String(20), unique=False, nullable=False, default='default.jpeg')
+    birthdate = db.Column(db.String(120), unique=False, nullable=False)
 
-    password = db.Column(db.String(60), unique=False, nullable=False)
+    selects = db.Column(db.String(120), unique=False, nullable=False)
+
+    radios = db.Column(db.String(120), unique=False, nullable=False)
+
+    password = db.Column(db.String(100), unique=False, nullable=False)
 
     def __repr__(self):
         return f"User('{self.username}','{self.email}','{self.image_file}')"
@@ -54,12 +60,6 @@ class User(db.Model):
 #python in project dir
 #from main import db
 #db.create_all()
-#
-
-
-
-
-
 
 
 
@@ -79,8 +79,27 @@ def about():
 def signup():
     form = signupform()
     if form.validate_on_submit():
-        flash('sign up successful', 'success')
-        return '<h1>' + form.username.data + ' ' + form.email.data + ' ' + str(form.birthdate.data) + form.radios.data + form.selects.data + form.password.data + '</h1>'
+        
+
+
+
+
+
+
+        hashed_password = generate_password_hash(form.password.data, method='sha256')
+        new_user = User(username=form.username.data, email=form.email.data, password=hashed_password, birthdate = form.birthdate.data, selects = form.selects.data, radios = form.radios.data)
+        db.session.add(new_user)
+        db.session.commit()
+        #so what i did here was the basic db things that i was doing in cmd line
+        #i just reated a new instance of User class called new_user
+        #everything i put into signup form was the passed into different attributes of the db User class and then was added and committed
+        #this put in our signup data
+        #also hashed the password before puting into database using generate has from werzeug security with method as sha256 that converts password to 80 characters long
+
+
+
+        flash('New user created', 'success')
+        
 
     return render_template("signup.html", title_given="SignUp", form=form)
 
@@ -89,8 +108,26 @@ def signup():
 def signin():
     form = signinform()
     if form.validate_on_submit():
-        flash('sign in successful', 'success')
-        return '<h1>' + form.email.data + ' '+form.password.data + '</h1>'
+
+        user = User.query.filter_by(email=form.email.data).first()
+
+        #assigned the email value from user filtered by email from which email was equal to form input as user and picked up the first entry 
+
+        if user:
+            #if the email exists
+            if check_password_hash(user.password, form.password.data):
+                #if the hashed password already saved in databse matches with the password from form that is hashed by this method and checked.
+                flash('Sign In Successfu', 'success')
+                #flash
+            else:
+                flash ('Invalid Email Address or Password', 'danger')
+        
+        else:
+            flash ('Invalid Email Address or Password', 'danger')
+
+    
+                
+        
 
     return render_template("signin.html", title_given="SignIn", form=form)
 

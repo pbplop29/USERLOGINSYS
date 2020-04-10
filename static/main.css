@@ -4,13 +4,10 @@ body{
     font-weight: 500;
 }
 
-h1 {
-    color:#1F2430;
-}
 
 
-    
-    
+
+
 
 .anch {
     max-height:100px;
@@ -94,6 +91,12 @@ h1{
     background-image: url(bg.jpg);
 }
 
+
+.logo{
+    max-height:80px;
+}
+    
+    
 .control-label {
     color:#0A0E14;
     font-size: 25px;
@@ -173,4 +176,5 @@ h1{
     max-width: 60px;
     max-height: 60px;
     margin-top:30px;
+    
 }
