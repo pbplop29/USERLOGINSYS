@@ -1,7 +1,7 @@
 # What the package contains
 
 ## The tree goes like
-![](https://imgur.com/a/4hILN0H)
+![Tree Image](https://imgur.com/a/4hILN0H)
 
 
 
