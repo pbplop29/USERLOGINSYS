@@ -1,7 +1,7 @@
 # What the package contains
 
 ## The tree goes like
-![](/Capture.png)
+![](Capture.png)
 
 
 
