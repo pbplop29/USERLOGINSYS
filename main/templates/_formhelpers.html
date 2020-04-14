@@ -4,9 +4,9 @@
     <div class>
         {{ field(class_='form-field', **kwargs)|safe }}
     
-        <ul style="background-color:black">
+        <ul class='ulx'>
             {% for error in field.errors %}
-            <li style="color:red;">{{ error }}</li>
+            <li class='lix' >{{ error }}</li>
             {% endfor %}
         </ul>
     </div>
@@ -65,9 +65,9 @@
     <div>
         {{ field(class_='form-field', **kwargs)|safe }}
     
-        <ul style="background-color:black">
+        <ul class="ulx">
             {% for error in field.errors %}
-            <li style="color:red;">{{ error }}</li>
+            <li class="lix">{{ error }}</li>
             {% endfor %}
         </ul>
     </div>

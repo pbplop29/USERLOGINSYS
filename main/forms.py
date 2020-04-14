@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm, RecaptchaField
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, Form, RadioField, SelectField, ValidationError
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 from wtforms.fields.html5 import DateField
-
+from main.models import User
 
 #so obviously imported Flaskform
 #imported RecaptchaField from flask_wtf because it is somewhat different from ususal wtforms fields
@@ -58,6 +58,16 @@ class signupform(FlaskForm):
     
     #Genertaes a submit button which acts as post
 
+    def validate_username(self, username):
+        user = User.query.filter_by(username=username.data).first()
+        if user:
+            raise ValidationError('The username already exists.')
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user:
+            raise ValidationError('The email already exists.')
+    # Information about these functions are in       this link:
+        # imgur.com/a/3582lY4
 
 
 
